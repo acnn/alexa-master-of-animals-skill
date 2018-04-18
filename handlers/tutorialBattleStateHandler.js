@@ -31,11 +31,8 @@ const tutorialBattleHandler = Alexa.CreateStateHandler(states.TUTORIAL_BATTLE, {
             }
         }
         if (chosenMove) {
-            console.log("Player using : " + JSON.stringify(chosenMove));
             var opponentMove = battleAI.getRandomMove(opponent);
-            console.log("OPponent using : " + JSON.stringify(opponentMove));
             var chosenMoveDamage = battleAI.getDamage(animal, opponent, chosenMove);
-            console.log("Player damaging : " + JSON.stringify(chosenMoveDamage));
             this.attributes.opponent.stats.energy = this.attributes.opponent.stats.energy - chosenMoveDamage.totalEffect;
             if (this.attributes.opponent.stats.energy > 0) {
                 var opponentMoveDamage = battleAI.getDamage(opponent, animal, opponentMove);

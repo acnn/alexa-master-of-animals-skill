@@ -17,7 +17,6 @@ var dynamoDbHelper = (function () {
                 if (err) {
                     console.error("Unable to scan the table. Error JSON:", JSON.stringify(err, null, 2));
                 } else {
-                    console.log("Scan succeeded.");
                     // continue scanning if we have more places, because
                     // scan can retrieve a maximum of 1MB of data
                     if (typeof data.LastEvaluatedKey != "undefined") {
@@ -40,8 +39,6 @@ var dynamoDbHelper = (function () {
                 if (err) {
                     console.error("Unable to query the table. Error JSON:", JSON.stringify(err, null, 2));
                 } else {
-                    console.log("Query succeeded.");
-
                     if (typeof data.LastEvaluatedKey != "undefined") {
                         console.log("Querying for more...");
                         params.ExclusiveStartKey = data.LastEvaluatedKey;
@@ -56,11 +53,10 @@ var dynamoDbHelper = (function () {
         },
 
         get: function (params, callback) {
-            console.log("Getting " + JSON.stringify(params));
             dynamodb.get(params, function (err, data) {
                 console.log(JSON.stringify(data));
                 if (err) {
-                    console.log(err, err.stack);
+                    console.error("Unable to get from the table. Error JSON:", JSON.stringify(err, null, 2));
                     callback(null);
                 }
                 if (data && data.Item)
@@ -95,9 +91,7 @@ var dynamoDbHelper = (function () {
         },
 
         getRandomWildAnimals: function (data, callback) {
-            console.log("In dynamo : " + JSON.stringify(data));
             if (data && data.levelThreshold !== undefined && data.region) {
-                console.log("Inside dynamo : " + JSON.stringify(data));
                 var params = {
                     TableName: config.tables.animals,
                     IndexName: config.indexes.randomWildAnimals,
@@ -111,7 +105,6 @@ var dynamoDbHelper = (function () {
                 dynamodbOps.query(params, callback);
             }
             else {
-                console.log("In dynamo null back " + JSON.stringify(data));
                 callback(null);
             }
 

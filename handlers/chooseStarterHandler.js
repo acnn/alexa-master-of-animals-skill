@@ -83,7 +83,7 @@ const chooseStarterHandler = Alexa.CreateStateHandler(states.CHOOSE_STARTER, {
                 transitions.startTutorial(emitter);
             }
             else {
-                console.log("DId not get animal ");
+                console.log("Did not get starter animal ");
             }
         });
     },
