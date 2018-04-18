@@ -23,7 +23,13 @@ var ambience = {
             "You are walking in the busy roads of Mumbai, ",
             "You are walking in the busy roads of Delhi, ",
             "You are walking in the busy roads of Pune, ",
-            "You are walking in the busy roads of Bengaluru, "
+            "You are walking in the busy roads of Bengaluru, ",
+            "You are walking in the busy roads of Hyderabad, ",
+            "You are walking in the busy roads of Chennai, ",
+            "You are walking in the busy roads of Jodhpur, ",
+            "You are walking in the busy roads of Thirupathi, ",
+            "You are walking in the busy roads of Kolkata, ",
+            "You are walking in the busy roads of Kochi, "
         ],
         sounds: [
             "<audio src='https://s3.amazonaws.com/ask-soundlibrary/transportation/amzn_sfx_bus_drive_past_01.mp3'/>"
@@ -32,7 +38,15 @@ var ambience = {
 
     forest: {
         messages: [
-            "You are passing through the forests of Western Ghats, "
+            "You are passing through the forests of Western Ghats, ",
+            "You are passing through the forests of Bandipur, ",
+            "You are passing through the forests of Eastern Ghats, ",
+            "You are passing through the forests of Vandalur, ",
+            "You are passing through the forests of Kaziranga, ",
+            "You are passing through the forests of Parambikulam, ",
+            "You are passing through the forests of Udaipur, ",
+            "You are passing through the forests of Mudumalai, ",
+            "You are passing through the forests of Radhanagari, "
         ],
         sounds: [
             "<audio src='https://s3.amazonaws.com/ask-soundlibrary/animals/amzn_sfx_bird_forest_01.mp3'/>",
@@ -52,7 +66,9 @@ var ambience = {
 
     mud: {
         messages: [
-            "You are trudging through the swamp forests of Sundarbans, "
+            "You are trudging through the mangrove forests of Sundarbans, ",
+            "You are trudging through the mangrove forests of Pichavaram, ",
+            "You are trudging through the mangrove forests of Andaman, "
         ],
         sounds: [
             "<audio src='https://s3.amazonaws.com/ask-soundlibrary/human/amzn_sfx_walking_in_mud_01.mp3'/>"
@@ -68,7 +84,10 @@ var ambience = {
 
     water: {
         messages: [
-            "You are strolling along the beautiful bank of river ganga, "
+            "You are strolling along the beautiful bank of river ganga, ",
+            "You are paddling slowly in the cauvery river, ",
+            "You are crossing a bridge over the tumultuous brahmaputra river, ",
+            "You are rowing to cross the mahanadi river, "
         ],
         sounds: [
             "<audio src='https://s3.amazonaws.com/ask-soundlibrary/nature/amzn_sfx_stream_01.mp3'/>",
@@ -197,7 +216,9 @@ var ambience = {
 
     monkey: {
         isMessageFirst: true,
-        messages: [],
+        messages: [
+            "You are making your way through the thick evergreen forests of Western Ghats, "
+        ],
         sounds: [
             "<audio src='https://s3.amazonaws.com/ask-soundlibrary/animals/amzn_sfx_monkey_calls_3x_01.mp3'/>",
             "<audio src='https://s3.amazonaws.com/ask-soundlibrary/animals/amzn_sfx_monkey_chimp_01.mp3'/>",
