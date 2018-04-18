@@ -1,0 +1,585 @@
+{
+    "interactionModel": {
+        "languageModel": {
+            "invocationName": "master of animals",
+            "intents": [
+                {
+                    "name": "AMAZON.CancelIntent",
+                    "samples": []
+                },
+                {
+                    "name": "AMAZON.HelpIntent",
+                    "samples": [
+                        "I dont understand"
+                    ]
+                },
+                {
+                    "name": "AMAZON.NoIntent",
+                    "samples": []
+                },
+                {
+                    "name": "AMAZON.StopIntent",
+                    "samples": []
+                },
+                {
+                    "name": "AMAZON.YesIntent",
+                    "samples": []
+                },
+                {
+                    "name": "BattleMovesIntent",
+                    "slots": [
+                        {
+                            "name": "move",
+                            "type": "BattleMove"
+                        },
+                        {
+                            "name": "animal",
+                            "type": "AnimalNames"
+                        }
+                    ],
+                    "samples": [
+                        "{animal} use {move}",
+                        "{animal} do {move}",
+                        "{move}",
+                        "do {move}"
+                    ]
+                },
+                {
+                    "name": "ChooseAnimalIntent",
+                    "slots": [
+                        {
+                            "name": "animalName",
+                            "type": "AnimalNames"
+                        }
+                    ],
+                    "samples": [
+                        "I'll go with {animalName}",
+                        "I want {animalName}",
+                        "I choose {animalName}",
+                        "{animalName}"
+                    ]
+                },
+                {
+                    "name": "WildBattleIntent",
+                    "slots": [],
+                    "samples": [
+                        "to explore",
+                        "explore"
+                    ]
+                }
+            ],
+            "types": [
+                {
+                    "name": "BattleMove",
+                    "values": [
+                        {
+                            "name": {
+                                "value": "trumpet"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "rough skin"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "speed burst"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "blood trail"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "drag"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "slow down"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "muddy spray"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "scent"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "hug"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "horn attack"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "berserk"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "water gun"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "fly"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "nibble"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "thrash"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "fake venom"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "ribbon wave"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "bubble beam"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "shell shock"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "crunch"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "death call"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "egg bomb"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "crown jab"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "toxic bomb"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "toxic"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "claw"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "beak attack"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "wing attack"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "slam"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "bubble"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "leap"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "water volcano"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "spit"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "cyclone"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "sky attack"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "peck"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "ambush"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "slash"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "scratch"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "bite"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "AnimalNames",
+                    "values": [
+                        {
+                            "name": {
+                                "value": "royal bengal tiger"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "eel"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "mako"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "pondicherry shark"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "ganges shark"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "shark"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "indian elephant"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "scarlet snapper"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "flame snapper"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "crimson snapper"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "ruby snapper"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "red snapper"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "snapper"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "cauvery mahseer"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "brown roofed turtle"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "nilgiri langur"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "leaf turtle"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "oldhams leaf turtle"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "ganges softshell turtle"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "gray langur"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "loggerhead turtle"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "lion tailed macaque"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "softshell turtle"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "bengal eagle owl"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "eagle owl"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "sea turtle"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "golden langur"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "collared scops owl"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "hawk owl"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "olive ridley turtle"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "gibbon"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "red crown roofed turtle"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "rhesus macaque"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "asian leaf turtle"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "hume's hawk owl"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "cochin leaf turtle"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "andaman hawk owl"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "scops owl"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "hawksbill turtle"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "dusky eagle owl"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "mountain scops owl"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "skywalker hoolock gibbon"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "roofed turtle"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "oriental scops owl"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "langur"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "brown hawk owl"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "assamese roofed turtle"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "western hoolock gibbon"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "arunachal macaque"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "eastern hoolock gibbon"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "black softshell turtle"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "macaque"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "leith's softshell turtle"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "nicobar scops owl"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "bonnet macaque"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "hoolock gibbon"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "spot bellied eagle owl"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "turtle"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "owl"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "monkey"
+                            }
+                        }
+                    ]
+                }
+            ]
+        }
+    }
+}
