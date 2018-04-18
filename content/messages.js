@@ -340,6 +340,15 @@ var messages = {
         introPrompt: "Are you ready to continue your journey? ",
         help: "Master Of Animals is inspired by the famous pokemon games. The objective of the game is to capture and train animals to become the greatest master ever. ",
         helpPrompt: "Are you ready to continue your journey?  ",
+        getPlayerInfo: function (player) {
+            var response = "";
+            var animalName = player.starter;
+            var animalLevel = player.animals[player.starter].level;
+            var wins = player.wins != undefined ? player.wins : 0;
+            var losses = player.losses != undefined ? player.losses : 0;
+            response += "You have a level " + animalLevel + " " + animalName + ". You have won " + wins + " and lost " + losses + " battles. ";
+            return response;
+        }
     }
 };
 

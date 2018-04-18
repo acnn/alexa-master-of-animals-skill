@@ -3,10 +3,9 @@ const states = require("../session/states");
 const transitions = require("../session/transitions");
 const messages = require("../content/messages");
 const continueGameHandler = Alexa.CreateStateHandler(states.CONTINUE_GAME, {
-    "LaunchRequest": function () {
-        this.attributes.player.region = "india";
+    "LaunchRequest": function () {        
         var speechOutput, reprompt;
-        speechOutput = messages.continueGame.intro + messages.continueGame.introPrompt;
+        speechOutput = messages.continueGame.intro + messages.continueGame.getPlayerInfo(this.attributes.player) + messages.continueGame.introPrompt;
         reprompt = messages.continueGame.introPrompt;
         this.response.speak(speechOutput).listen(reprompt);
         this.emit(":responseReady");
