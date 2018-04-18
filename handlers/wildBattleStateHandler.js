@@ -25,6 +25,7 @@ const wildBattleHandler = Alexa.CreateStateHandler(states.WILD_BATTLE, {
             if (wildAnimals && wildAnimals.length > 0) {
                 var chosenOpponent = battleAI.chooseOpponent(wildAnimals, playerAnimal);
                 chosenOpponent.level = battleAI.getOpponentLevel(chosenOpponent, playerAnimal);
+                battleAI.setStatsForLevel(chosenOpponent);
                 emitter.attributes.player.duel = {};
                 emitter.attributes.player.duel.isDueling = true;
                 emitter.attributes.player.duel.type = "wild";
@@ -36,8 +37,8 @@ const wildBattleHandler = Alexa.CreateStateHandler(states.WILD_BATTLE, {
             }
             else {
                 speechOutput = messages.wildBattle.noWilds;
-                transitions.clearState(this);            
-                emitter.response.speak(speechOutput);                
+                transitions.clearState(this);
+                emitter.response.speak(speechOutput);
             }
             emitter.emit(":responseReady");
         });
@@ -70,18 +71,14 @@ const wildBattleHandler = Alexa.CreateStateHandler(states.WILD_BATTLE, {
                         if (isLevelUp) {
                             turnOutcome.isLevelUp = true;
                             playerAnimal.level += 1;
-                            battleAI.levelUpAnimal(this.attributes.player.animals[playerAnimal.name]);
                             var isEvolving = battleAI.isReadyToEvolve(playerAnimal, this.attributes.player.region);
                             if (isEvolving) {
                                 turnOutcome.isEvolution = true;
                                 var currentLevel = playerAnimal.level;
                                 var availableEvolutions = playerAnimal.evolution[this.attributes.player.region].names;
                                 var chosenEvolution = availableEvolutions[Math.floor(Math.random() * availableEvolutions.length)];
-                                console.log("Chisen evolve : " + JSON.stringify(chosenEvolution));
                                 dao.getAnimal({ name: chosenEvolution }, function (evolution) {
-                                    console.log("Inside evolve : " + JSON.stringify(evolution));
                                     if (evolution) {
-                                        console.log("Got evolve : " + JSON.stringify(evolution));
                                         evolution.level = currentLevel;
                                         battleAI.evolveAnimal(playerAnimal, evolution);
                                         emitter.attributes.player.starter = evolution.name;
@@ -100,6 +97,7 @@ const wildBattleHandler = Alexa.CreateStateHandler(states.WILD_BATTLE, {
                                 });
                             }
                             else {
+                                battleAI.levelUpAnimal(this.attributes.player.animals[playerAnimal.name]);
                                 speechOutput = messages.wildBattle.getWinSummary(turnOutcome) + messages.wildBattle.nextBattlePrompt;
                                 reprompt = messages.wildBattle.nextBattlePrompt;
                                 emitter.response.speak(speechOutput).listen(reprompt);
@@ -122,8 +120,6 @@ const wildBattleHandler = Alexa.CreateStateHandler(states.WILD_BATTLE, {
                     }
                 }
                 else {
-                    //this.attributes.player.duel.playerAnimal.stats.energy -= turnOutcome.damageToPlayer;
-                    //this.attributes.player.duel.opponent.stats.energy -= turnOutcome.damageToOpponent;
                     speechOutput = messages.wildBattle.getTurnSummary(turnOutcome) + messages.wildBattle.askForNextMove();
                     reprompt = messages.wildBattle.askForNextMove();
                     this.response.speak(speechOutput).listen(reprompt);

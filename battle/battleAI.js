@@ -88,6 +88,50 @@ var battleSystem = {
         return choice;
     },
 
+    getEvolutionsForLevel: function (level) {
+        if (level > 22)
+            return 4;
+        else if (level > 14)
+            return 3;
+        else if (level > 7)
+            return 2;
+        else if (level > 2)
+            return 1;
+        else
+            return 0;
+    },
+
+    getNormalizedStats: function (growth, level, evolutions) {
+        var stats = {
+            energy: 0,
+            attack: 0,
+            defence: 0,
+            speed: 0,
+            accuracy: 0,
+            evasiveness: 0
+        };
+        var levelMultiples = level - evolutions;
+        stats.energy = growth.levelUp.energy * levelMultiples + growth.evolution.energy * evolutions;
+        stats.attack = growth.levelUp.attack * levelMultiples + growth.evolution.attack * evolutions;
+        stats.defence = growth.levelUp.defence * levelMultiples + growth.evolution.defence * evolutions;
+        stats.speed = growth.levelUp.speed * levelMultiples + growth.evolution.speed * evolutions;
+        stats.accuracy = growth.levelUp.accuracy * levelMultiples + growth.evolution.accuracy * evolutions;
+        stats.evasiveness = growth.levelUp.evasiveness * levelMultiples + growth.evolution.evasiveness * evolutions;
+        return stats;
+    },
+
+    setStatsForLevel: function (opponent) {
+        var statGrowth = animalNatures[opponent.nature];
+        var evolutions = this.getEvolutionsForLevel(opponent.level);
+        var normalizedStats = this.getNormalizedStats(statGrowth, opponent.level, evolutions);
+        opponent.stats.energy = opponent.stats.energy > normalizedStats.energy ? opponent.stats.energy : normalizedStats.energy;
+        opponent.stats.attack = opponent.stats.attack > normalizedStats.attack ? opponent.stats.attack : normalizedStats.attack;
+        opponent.stats.defence = opponent.stats.defence > normalizedStats.defence ? opponent.stats.defence : normalizedStats.defence;
+        opponent.stats.speed = opponent.stats.speed > normalizedStats.speed ? opponent.stats.speed : normalizedStats.speed;
+        opponent.stats.accuracy = opponent.stats.accuracy > normalizedStats.accuracy ? opponent.stats.accuracy : normalizedStats.accuracy;
+        opponent.stats.evasiveness = opponent.stats.evasiveness > normalizedStats.evasiveness ? opponent.stats.evasiveness : normalizedStats.evasiveness;        
+    },
+
     playerAttacksOpponent: function (outcome, opponent, playerMoveDamage) {
         outcome.damageToOpponent = playerMoveDamage.totalEffect;
         console.log("Oppo energy : " + opponent.stats.energy);
