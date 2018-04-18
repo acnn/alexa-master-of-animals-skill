@@ -56,7 +56,11 @@ var ambience = {
     },
 
     grass: {
-        messages: [],
+        messages: [
+            "You are walking on the sprawling grasslands of punjab, ",
+             "You are walking on the sprawling grasslands of uttar pradesh, ",
+              "You are walking on the sprawling grasslands of telangana, "
+        ],
         sounds: [
             "<audio src='https://s3.amazonaws.com/ask-soundlibrary/human/amzn_sfx_walking_on_grass_01.mp3'/>",
             "<audio src='https://s3.amazonaws.com/ask-soundlibrary/human/amzn_sfx_walking_on_grass_02.mp3'/>",
