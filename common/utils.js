@@ -4,14 +4,15 @@ var utils = {
     },
 
     getUserRegion: function (language) {
-        switch (language) {
-            case "en-US":
-                return "us";
-            case "en-IN":
-                return "india";
-            default:
-                return "india";
-        }
+        // switch (language) {
+        //     case "en-US":
+        //         return "us";
+        //     case "en-IN":
+        //         return "india";
+        //     default:
+        //         return "india";
+        // }
+        return "india";
     },
 
 
