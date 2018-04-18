@@ -25,14 +25,11 @@ var battleSystem = {
     },
 
     getWildAnimalLevelRange: function (playerAnimal) {
-        console.log("In wil lvl tabge: " + JSON.stringify(playerAnimal));
         var levelRange = Math.floor(playerAnimal.level / 5) * 5;
-        console.log("In wil lvl: " + levelRange);
         if (Math.random() * 10 < 3)
             levelRange += 0;
         else if (levelRange > 4 && Math.random() > 8)
             levelRange -= 5;
-        console.log("In wil lvl ret: " + levelRange);
         return levelRange;
     },
 
@@ -103,33 +100,39 @@ var battleSystem = {
 
     getNormalizedStats: function (growth, level, evolutions) {
         var stats = {
-            energy: 0,
-            attack: 0,
-            defence: 0,
-            speed: 0,
-            accuracy: 0,
+            energy: 40,
+            attack: 40,
+            defence: 40,
+            speed: 40,
+            accuracy: 70,
             evasiveness: 0
         };
         var levelMultiples = level - evolutions;
-        stats.energy = growth.levelUp.energy * levelMultiples + growth.evolution.energy * evolutions;
-        stats.attack = growth.levelUp.attack * levelMultiples + growth.evolution.attack * evolutions;
-        stats.defence = growth.levelUp.defence * levelMultiples + growth.evolution.defence * evolutions;
-        stats.speed = growth.levelUp.speed * levelMultiples + growth.evolution.speed * evolutions;
-        stats.accuracy = growth.levelUp.accuracy * levelMultiples + growth.evolution.accuracy * evolutions;
-        stats.evasiveness = growth.levelUp.evasiveness * levelMultiples + growth.evolution.evasiveness * evolutions;
+        stats.energy += Math.ceil(growth.levelUp.energy * levelMultiples + growth.evolution.energy * evolutions);
+        stats.attack += Math.ceil(growth.levelUp.attack * levelMultiples + growth.evolution.attack * evolutions);
+        stats.defence += Math.ceil(growth.levelUp.defence * levelMultiples + growth.evolution.defence * evolutions);
+        stats.speed += Math.ceil(growth.levelUp.speed * levelMultiples + growth.evolution.speed * evolutions);
+        stats.accuracy += Math.ceil(growth.levelUp.accuracy * levelMultiples + growth.evolution.accuracy * evolutions);
+        stats.evasiveness += Math.ceil(growth.levelUp.evasiveness * levelMultiples + growth.evolution.evasiveness * evolutions);
         return stats;
     },
 
     setStatsForLevel: function (opponent) {
+        console.log("Setting stats for level : " + JSON.stringify(opponent));
+        console.log("Before setting : " + JSON.stringify(opponent.stats));
         var statGrowth = animalNatures[opponent.nature];
+        console.log("Stat growth : " + JSON.stringify(statGrowth));
         var evolutions = this.getEvolutionsForLevel(opponent.level);
+        console.log("Evols : " + JSON.stringify(evolutions));
         var normalizedStats = this.getNormalizedStats(statGrowth, opponent.level, evolutions);
+        console.log("Normalized stats : " + JSON.stringify(normalizedStats));
         opponent.stats.energy = opponent.stats.energy > normalizedStats.energy ? opponent.stats.energy : normalizedStats.energy;
         opponent.stats.attack = opponent.stats.attack > normalizedStats.attack ? opponent.stats.attack : normalizedStats.attack;
         opponent.stats.defence = opponent.stats.defence > normalizedStats.defence ? opponent.stats.defence : normalizedStats.defence;
         opponent.stats.speed = opponent.stats.speed > normalizedStats.speed ? opponent.stats.speed : normalizedStats.speed;
         opponent.stats.accuracy = opponent.stats.accuracy > normalizedStats.accuracy ? opponent.stats.accuracy : normalizedStats.accuracy;
-        opponent.stats.evasiveness = opponent.stats.evasiveness > normalizedStats.evasiveness ? opponent.stats.evasiveness : normalizedStats.evasiveness;        
+        opponent.stats.evasiveness = opponent.stats.evasiveness > normalizedStats.evasiveness ? opponent.stats.evasiveness : normalizedStats.evasiveness;
+        console.log("After setting : " + JSON.stringify(opponent.stats));
     },
 
     playerAttacksOpponent: function (outcome, opponent, playerMoveDamage) {
