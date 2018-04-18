@@ -117,30 +117,21 @@ var battleSystem = {
         return stats;
     },
 
-    setStatsForLevel: function (opponent) {
-        console.log("Setting stats for level : " + JSON.stringify(opponent));
-        console.log("Before setting : " + JSON.stringify(opponent.stats));
-        var statGrowth = animalNatures[opponent.nature];
-        console.log("Stat growth : " + JSON.stringify(statGrowth));
+    setStatsForLevel: function (opponent) {                
+        var statGrowth = animalNatures[opponent.nature];        
         var evolutions = this.getEvolutionsForLevel(opponent.level);
-        console.log("Evols : " + JSON.stringify(evolutions));
         var normalizedStats = this.getNormalizedStats(statGrowth, opponent.level, evolutions);
-        console.log("Normalized stats : " + JSON.stringify(normalizedStats));
         opponent.stats.energy = opponent.stats.energy > normalizedStats.energy ? opponent.stats.energy : normalizedStats.energy;
         opponent.stats.attack = opponent.stats.attack > normalizedStats.attack ? opponent.stats.attack : normalizedStats.attack;
         opponent.stats.defence = opponent.stats.defence > normalizedStats.defence ? opponent.stats.defence : normalizedStats.defence;
         opponent.stats.speed = opponent.stats.speed > normalizedStats.speed ? opponent.stats.speed : normalizedStats.speed;
         opponent.stats.accuracy = opponent.stats.accuracy > normalizedStats.accuracy ? opponent.stats.accuracy : normalizedStats.accuracy;
         opponent.stats.evasiveness = opponent.stats.evasiveness > normalizedStats.evasiveness ? opponent.stats.evasiveness : normalizedStats.evasiveness;
-        console.log("After setting : " + JSON.stringify(opponent.stats));
     },
 
     playerAttacksOpponent: function (outcome, opponent, playerMoveDamage) {
         outcome.damageToOpponent = playerMoveDamage.totalEffect;
-        console.log("Oppo energy : " + opponent.stats.energy);
-        console.log("Effect : " + playerMoveDamage.totalEffect);
         opponent.stats.energy -= playerMoveDamage.totalEffect;
-        console.log("Oppo energy : " + opponent.stats.energy);
         if (opponent.stats.energy < 0) {
             outcome.isDuelOver = true;
             outcome.isOpponentAlive = false;
@@ -158,7 +149,6 @@ var battleSystem = {
 
     isMoveAccurate: function (animal) {
         var probability = utils.randomIntFromInterval(0, 100);
-        console.log("Checking accu for " + animal.name + animal.stats.accuracy + " < " + probability + " ? ");
         if (animal.stats.accuracy < probability)
             return false;
         else
@@ -204,7 +194,6 @@ var battleSystem = {
 
         if (outcome.playerAttackedFirst) {
             if (isPlayerAccurate && !opponentEvaded) {
-                console.log("player att first");
                 this.playerAttacksOpponent(outcome, opponent, playerMoveDamage);
             }
             if (!outcome.isDuelOver && isOpponentAccurate && !playerEvaded) {
@@ -215,7 +204,6 @@ var battleSystem = {
             if (isOpponentAccurate && !playerEvaded)
                 this.opponentAttacksPlayer(outcome, player, opponentMoveDamage);
             if (!outcome.isDuelOver && isPlayerAccurate && !opponentEvaded) {
-                console.log("player att after opp");
                 this.playerAttacksOpponent(outcome, opponent, playerMoveDamage);
             }
         }
